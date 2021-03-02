@@ -18,7 +18,7 @@ def github_json(owner, repo, branch):
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
     if resp.content:
-        return jsonify({'code': 0, 'source_url': source_url, 'content': resp.content.decode()})
+        return jsonify({'code': 0, 'source_url': source_url, 'content': json.loads(resp.content.decode())})
     else:
         return jsonify({'code': 0, 'source_url': source_url, 'content': []})
 
