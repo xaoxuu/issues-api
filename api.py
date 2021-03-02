@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from flask import Flask, jsonify, redirect
+from flask import Flask, jsonify, redirect, make_response
 import requests
 import json
 from bs4 import BeautifulSoup
@@ -14,14 +14,17 @@ def homepage():
 # author: https://github.com/Zfour
 def github_json(owner, repo, branch):
     source_url = 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/output.json'
-    resp = requests.get(source_url)
+    req = requests.get(source_url)
+    content = []
+    if req.content:
+        content = json.loads(req.content.decode())
+
+    resp = make_response(jsonify({'code': 0, 'source_url': source_url, 'content': content}))
+    resp.status = 200
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
-    if resp.content:
-        return jsonify({'code': 0, 'source_url': source_url, 'content': json.loads(resp.content.decode())})
-    else:
-        return jsonify({'code': 0, 'source_url': source_url, 'content': []})
-
+    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+    return resp
 
 @app.route('/<owner>', methods=['GET'])
 def start_owner(owner):
