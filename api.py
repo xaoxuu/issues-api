@@ -3,6 +3,7 @@ from flask import Flask, jsonify, redirect
 import requests
 import json
 from bs4 import BeautifulSoup
+import re
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ def github_json(owner, repo, branch):
     r.encoding = 'utf-8'
     gitpage = r.text
     soup = BeautifulSoup(gitpage, 'html.parser')
-    main_content = soup.find('td',id = 'LC1').text
+    main_content = soup.find('td', id = 'LC1').text
     return jsonify({'code': 0, 'source_url': source_url, 'body': json.loads(main_content)})
 
 
