@@ -20,7 +20,7 @@ def github_json(owner, repo, branch):
         content = json.loads(req.content.decode())
 
     resp = make_response(jsonify({'code': 0, 'source_url': source_url, 'content': content}))
-    resp.status = 200
+    resp.status = '200'
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
     resp.headers['Content-Type'] = 'application/json; charset=utf-8'
