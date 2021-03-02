@@ -1,0 +1,15 @@
+# 网络请求设置
+request:
+  timeout: 10 # 超时设置
+  ssl: false # ssl设置
+
+# 友链配置
+issues:
+  repo: xaoxuu/friends
+  state: open
+  label: active
+
+# API 配置
+api:
+  repo: xaoxuu/issues-api
+  branch: master
