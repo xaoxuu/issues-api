@@ -15,6 +15,8 @@ def homepage():
 def github_json(owner, repo, branch):
     source_url = 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/output.json'
     resp = requests.get(source_url)
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE'
     if resp.content:
         return jsonify({'code': 0, 'source_url': source_url, 'content': resp.content.decode()})
     else:
