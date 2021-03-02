@@ -13,15 +13,10 @@ def homepage():
 
 # author: https://github.com/Zfour
 def github_json(owner, repo, branch):
-    source_url = 'https://github.com/' + owner + '/' + repo + '/blob/' + branch + '/output.json'
-    r = requests.get(source_url)
-    r.encoding = 'utf-8'
-    gitpage = r.text
-    soup = BeautifulSoup(gitpage, 'html.parser')
-    content = soup.find('td', id = 'LC1')
-    if content:
-        main_content = content.text
-        return jsonify({'code': 0, 'source_url': source_url, 'content': json.loads(content.text)})
+    source_url = 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/output.json'
+    resp = requests.get(source_url)
+    if resp.content:
+        return jsonify({'code': 0, 'source_url': source_url, 'content': resp.content.decode()})
     else:
         return jsonify({'code': 0, 'source_url': source_url, 'content': []})
 
