@@ -1,11 +1,8 @@
 # -*- coding: UTF-8 -*-
-from flask import Flask, jsonify, abort, url_for, redirect
+from flask import Flask, jsonify, redirect
 import requests
-import re
 import json
-from http.server import BaseHTTPRequestHandler
 from bs4 import BeautifulSoup
-import yaml
 
 app = Flask(__name__)
 
@@ -13,24 +10,15 @@ app = Flask(__name__)
 def homepage():
     return redirect('https://github.com/xaoxuu/issues-api')
 
-def load_config():
-    f = open('_config.yml', 'r',encoding='utf-8')
-    ystr = f.read()
-    ymllist = yaml.load(ystr, Loader=yaml.FullLoader)
-    return ymllist
-
 # author: https://github.com/Zfour
 def github_json(owner, repo, branch):
-    source_path = 'https://github.com/' + owner + '/' + repo + '/blob/' + branch + '/output.json'
-    config = load_config()
-    print('config.repo: ', config['api']['repo'])
-    r = requests.get(source_path)
+    source_url = 'https://github.com/' + owner + '/' + repo + '/blob/' + branch + '/output.json'
+    r = requests.get(source_url)
     r.encoding = 'utf-8'
     gitpage = r.text
     soup = BeautifulSoup(gitpage, 'html.parser')
     main_content = soup.find('td',id = 'LC1').text
-    result = json.loads(main_content)
-    return jsonify({'code': 0, 'source_path': source_path, 'body': result})
+    return jsonify({'code': 0, 'source_url': source_url, 'body': json.loads(main_content)})
 
 
 @app.route('/<owner>', methods=['GET'])
