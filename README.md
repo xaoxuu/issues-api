@@ -2,7 +2,7 @@
 
 一个通过解析 issues 中第一段 `JSON` 代码块并生成 API 加速访问的工具。解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。
 
-测试地址： https://issues-api.vercel.app/xaoxuu
+测试地址： https://issues-api.vercel.app/v1/xaoxuu
 
 ## 使用方法
 
@@ -12,7 +12,7 @@
 ### 测试是否配置成功
 
 1. 新建 issue 并按照模板要求填写提交。
-2. 等待 Action 运行完毕，检查 `output.json` 文件内容是否正确，如果正确则表示已经配置成功。
+2. 等待 Action 运行完毕，检查 `generator/output/v1/data.json` 文件内容是否正确，如果正确则表示已经配置成功。
 
 ### 前端使用方法
 
@@ -34,22 +34,22 @@
 
 [![Deploy to Vercel](https://camo.githubusercontent.com/f209ca5cc3af7dd930b6bfc55b3d7b6a5fde1aff/68747470733a2f2f76657263656c2e636f6d2f627574746f6e)](https://vercel.com/import/project?template=https://github.com/xaoxuu/issues-api)
 
-然后访问 `https://issues-api.vercel.app/yourname`
+然后访问 `https://issues-api.vercel.app/v1/yourname`
 
 如果仓库为其他名称，例如 `examples`，那么需要指定仓库名：
 ```
-https://issues-api.vercel.app/yourname/examples
+https://issues-api.vercel.app/v1/yourname/examples
 ```
 
 如果仓库默认分支不是 `main`，那么需要指定分支：
 ```
-https://issues-api.vercel.app/yourname/examples/master
+https://issues-api.vercel.app/v1/yourname/examples/master
 ```
 
 前端使用方法示例：
 
 ```
-{% friends repo:yourname/examples api:https://issues-api.vercel.app/yourname/examples %}
+{% friends repo:yourname/examples api:https://issues-api.vercel.app/v1/yourname/examples %}
 ```
 
 ## 感谢

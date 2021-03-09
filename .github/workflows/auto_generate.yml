@@ -20,8 +20,8 @@ jobs:
         pip install -r requirements.txt
     - name: Update links #更新
       run: |
-        python generate.py
-        echo `date +"%Y-%m-%d %H:%M:%S"` begin > time.log
+        python generator/run.py
+        echo `date +"%Y-%m-%d %H:%M:%S"` begin > generator/time.log
     - name: Commit #更新日志到GitHub仓库
       run: |
         git config --global user.email github-actions@noreply.github.com

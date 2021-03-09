@@ -7,13 +7,9 @@ import re
 
 app = Flask(__name__)
 
-@app.route('/')
-def homepage():
-    return redirect('https://github.com/xaoxuu/issues-api')
-
 # author: https://github.com/Zfour
 def github_json(owner, repo, branch):
-    source_url = 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/output.json'
+    source_url = 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/' + branch + '/generator/output/v1/data.json'
     req = requests.get(source_url)
     content = []
     if req.content:
@@ -26,17 +22,17 @@ def github_json(owner, repo, branch):
     resp.headers['Content-Type'] = 'application/json; charset=utf-8'
     return resp
 
-@app.route('/<owner>', methods=['GET'])
+@app.route('/v1/<owner>', methods=['GET'])
 def start_owner(owner):
     repo = 'friends'
     branch = 'main'
     return github_json(owner, repo, branch)
 
-@app.route('/<owner>/<repo>', methods=['GET'])
+@app.route('/v1/<owner>/<repo>', methods=['GET'])
 def start_owner_repo(owner, repo):
     branch = 'main'
     return github_json(owner, repo, branch)
 
-@app.route('/<owner>/<repo>/<branch>', methods=['GET'])
+@app.route('/v1/<owner>/<repo>/<branch>', methods=['GET'])
 def start_owner_repo_branch(owner, repo, branch):
     return github_json(owner, repo, branch)

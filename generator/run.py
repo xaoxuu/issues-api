@@ -58,6 +58,6 @@ def github_issuse(data_pool):
 
 #友链规则
 github_issuse(data_pool)
-filename='output.json'
+filename='generator/output/v1/data.json'
 with open(filename,'w',encoding='utf-8') as file_obj:
    json.dump(data_pool,file_obj,ensure_ascii=False)
