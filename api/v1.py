@@ -22,7 +22,7 @@ def github_json(owner, repo, branch) -> requests.Response:
         req = requests.get(source_url)
         resp = make_response(jsonify(
             {'code': 0, 'source_url': source_url,
-             'content': [json.loads(req.content.decode())] if req.content else []}))
+             'content': json.loads(req.content.decode()) if req.content else []}))
         resp.status = '200'
     except requests.exceptions.ConnectionError:
         resp = make_response(jsonify({'code': 500, 'content': '连接超时'}))
