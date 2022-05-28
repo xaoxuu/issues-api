@@ -5,6 +5,6 @@ request:
 
 # 要抓取的 issues 配置
 issues:
-  repo: xaoxuu/issues-api
+  repo: xjuzhi/issues-api
   state: open
   label: active
