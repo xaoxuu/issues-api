@@ -40,7 +40,7 @@ def github_json(owner, repo, branch, path) -> requests.Response:
 @app.route('/v2/<owner>', methods=['GET'])
 @app.route('/v2/<owner>/<repo>', methods=['GET'])
 @app.route('/v2/<owner>/<repo>/<branch>', methods=['GET'])
-@app.route('/v2/<owner>/<repo>/<branch>/<path>', methods=['GET'])
+@app.route('/v2/<owner>/<repo>/<branch>/<path:path>', methods=['GET'])
 def start_owner_repo_branch(owner, repo='issues-api', branch='main', path='generator/output/v2/data.json'):
     """获取友链信息
 
@@ -49,4 +49,5 @@ def start_owner_repo_branch(owner, repo='issues-api', branch='main', path='gener
     :param branch: GitHub 仓库分支名(默认为: main)
     :return: Response
     """
+    print('owner:', owner, 'repo:', repo, 'branch', branch, 'path', path)
     return github_json(owner, repo, branch, path)
