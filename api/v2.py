@@ -9,7 +9,7 @@ app.config['JSON_AS_ASCII'] = False
 
 
 # author: https://github.com/Zfour
-def github_json(owner, repo, branch) -> requests.Response:
+def github_json(owner, repo, branch, path) -> requests.Response:
     """获取友链信息
 
     :param owner: GitHub 用户名
