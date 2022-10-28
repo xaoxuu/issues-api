@@ -49,5 +49,4 @@ def start_owner_repo_branch(owner, repo='issues-api', branch='main', path='gener
     :param branch: GitHub 仓库分支名(默认为: main)
     :return: Response
     """
-    print('source_url', source_url)
     return github_json(owner, repo, branch, path)
