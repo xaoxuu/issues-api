@@ -18,6 +18,7 @@ def github_json(owner, repo, branch, path) -> requests.Response:
     :return: Response
     """
     source_url = f'https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}'
+    print('source_url', source_url)
     try:
         req = requests.get(source_url)
         resp = make_response(jsonify(
@@ -48,4 +49,5 @@ def start_owner_repo_branch(owner, repo='issues-api', branch='main', path='gener
     :param branch: GitHub 仓库分支名(默认为: main)
     :return: Response
     """
+    print('source_url', source_url)
     return github_json(owner, repo, branch, path)
