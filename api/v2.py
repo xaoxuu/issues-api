@@ -17,7 +17,7 @@ def github_json(owner, repo, branch, path) -> requests.Response:
     :param branch: GitHub 仓库分支名
     :return: Response
     """
-    source_url = f'https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{branch}'
+    source_url = f'https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}'
     try:
         req = requests.get(source_url)
         resp = make_response(jsonify(
