@@ -49,5 +49,9 @@ def start_owner_repo_branch(owner, repo='issues-api', branch='main', path='gener
     :param branch: GitHub 仓库分支名(默认为: main)
     :return: Response
     """
-    print('owner:', owner, 'repo:', repo, 'branch', branch, 'path', path)
+    print('--- start ---')
+    print('owner:', owner)
+    print('repo:', repo)
+    print('branch:', branch)
+    print('path:', path)
     return github_json(owner, repo, branch, path)
