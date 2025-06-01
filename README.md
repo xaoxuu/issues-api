@@ -1,5 +1,10 @@
 # issues-api
 
+
+> [!IMPORTANT]
+> 本项目已经归档不再维护，请使用功能更强大的 [动态友链及链接检查器](https://github.com/xaoxuu/links-checker) 使用方法更简单！还支持搭配 [友链文章订阅](https://github.com/xaoxuu/feed-posts-parser) 功能。
+ 
+
 一个通过解析 issues 中第一段 `JSON` 代码块并生成 API 加速访问的工具。解决了直接调用 GitHub API 频率有限制以及速度过慢的问题。
 
 测试地址： https://issues-api.vercel.app/v1/xaoxuu
